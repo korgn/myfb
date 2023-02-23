@@ -55,4 +55,4 @@ async def handle_new_chat_member(message: types.Message):
     await bot.send_message(message.chat.id, f"Привіт, @{message.new_chat_members[0].username}!")
 
 if __name__ == '__main__':
-    asyncio.run(dp.start_polling(dp, skip_updates=True))
+    asyncio.run(dp.start_polling(dp))
