@@ -1,4 +1,4 @@
-#import telebot
+import telebot
 import time
 
 bot = telebot.TeleBot('6102750853:AAHOZ95KPNLsYKA9AY_D6ef-GJTlBEedG2E')
@@ -29,10 +29,10 @@ def handle_message(message):
     user_messages[user_id].append(time.time())
 
     if len(user_messages[user_id]) >= 5:
-        if user_messages[user_id][-1] - user_messages[user_id][-3] <= 5:
+        if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
            try:
-             bot.restrict_chat_member(message.chat.id, user_id, until_date=0)
-             bot.send_message(message.chat.id, f"@Did_Non_Stop @dekeractoviy @Rommel_l @wsgf2014 - @{username} [{user_id}] був замучений задля припинення спаму.")
+             #bot.restrict_chat_member(message.chat.id, user_id, until_date=0)
+             bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був би замучений задля припинення спаму, але це тест-мод, хєрлі нам.")
            except: 
              bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася опимлка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
            try:
