@@ -52,9 +52,6 @@ PettingZoo==1.15.0
 Pillow==9.4.0
 pocketsphinx==5.0.0
 protobuf==3.20.0
-pyasn1==0.4.8
-pyasn1-modules==0.2.8
-PyAudio==0.2.13
 pymorphy2==0.9.1
 pymorphy2-dicts-ru==2.4.417127.4579844
 pyparsing==3.0.9
