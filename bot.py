@@ -1,4 +1,4 @@
-import telebot
+#import telebot
 import time
 
 bot = telebot.TeleBot('6102750853:AAHOZ95KPNLsYKA9AY_D6ef-GJTlBEedG2E')
