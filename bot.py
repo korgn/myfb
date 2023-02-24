@@ -33,7 +33,7 @@ def handle_message(message):
     if len(user_messages[user_id]) >= 5:
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
            try:
-             #bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time.timestamp())
+             bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time.timestamp())
              #@Did_Non_Stop @dekeractoviy @Rommel_l @wsgf_2014     
              bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був би замучений задля припинення спаму. Але розробник не дурак, та увімкнув тест мод. Але розробник дурак, та бот до тест моду вже помутив деяких спамерів. Зараз би сюда ще й монолог написати.")
            except: 
