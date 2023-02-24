@@ -38,7 +38,7 @@ def handle_message(message):
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
 
 
-                if bot.get_chat_member(message.chat.id, user_id).status == "administrator":
+                if bot.get_chat_member(message.chat.id, user_id).status = "administrator":
                     markup = types.InlineKeyboardMarkup(row_width=2)
                     unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
                     ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
