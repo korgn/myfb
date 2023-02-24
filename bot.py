@@ -41,7 +41,7 @@ def handle_message(message):
                 # Відправлення повідомлення про мут та кнопок для зняття муту та бану
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] був замучений задля припинення спаму.")
             except: 
-                bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася опимлка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
+                bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
             try:
                 del user_messages[user_id]
             except:
