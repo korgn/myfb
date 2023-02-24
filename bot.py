@@ -47,5 +47,10 @@ def handle_message(message):
                del user_messages[user_id]
            except:
                pass
+            
+@bot.message_handler(func=lambda message: True)
+def echo_message(message):
+    if message.text == "Зродилимь ми...":
+        bot.send_message(message.chat.id, "З пожеж війни, із полум'я вогнів \n Плекав нас біль по втраті України\n Кормив нас гнів і злість на ворогів\nПлекав нас біль по втраті України\nКормив нас гнів і злість на ворогів\nІ ось ми йдем у бою життєвому\nВільні, міцні, незламні мов граніт\nБо плач не дав свободи ще нікому\nА хто борець, той здобуває світ\nБо плач не дав свободи ще нікому\nА хто борець, той здобуває світ")
 
 bot.polling()
