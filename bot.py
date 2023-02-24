@@ -35,11 +35,10 @@ def handle_message(message):
     if len(user_messages[user_id]) >= 5:
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
             try:
-                # Заборонити користувача на 5 хвилин
-                bot.restrict_chat_member(message.chat.id, user_id, until_date=0)
+                bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
 
-                # Створення кнопок для зняття муту та бану, якщо користувач - адміністратор, не створювати кнопки
-                if bot.get_chat_member(message.chat.id, user_id).status != "administrator":
+
+                if bot.get_chat_member(message.chat.id, user_id).status == "administrator":
                     markup = types.InlineKeyboardMarkup(row_width=2)
                     unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
                     ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
