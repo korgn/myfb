@@ -1,5 +1,6 @@
 import telebot
 import time
+from telebot import types
 from datetime import datetime, timedelta
 
 bot = telebot.TeleBot('6102750853:AAHOZ95KPNLsYKA9AY_D6ef-GJTlBEedG2E')
@@ -35,6 +36,12 @@ def handle_message(message):
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
            try:
              bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time.timestamp())
+                
+                markup = types.InlineKeyboardMarkup(row_width=2)
+                unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
+                ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
+                markup.add(unmute_button, ban_button)
+                
              #@Did_Non_Stop @dekeractoviy @Rommel_l @wsgf_2014     
              bot.send_message(message.chat.id, f"@Did_Non_Stop, @dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.")
            except: 
@@ -43,5 +50,19 @@ def handle_message(message):
                del user_messages[user_id]
            except:
                pass
+            
+            
+@bot.callback_query_handler(func=lambda call: True)
+def handle_callback(call):
+    user_id = call.data.split(":")[1]
+
+    if call.data.startswith("unmute"):
+        # Зняти мут з користувача
+        bot.restrict_chat_member(call.message.chat.id, user_id, until_date=0, can_send_messages=True)
+        bot.answer_callback_query(call.id, text="Мут знято")
+    elif call.data.startswith("ban"):
+        # Забанити користувача
+        bot.ban_chat_member(call.message.chat.id, user_id)
+        bot.answer_callback_query(call.id, text="Користувач забанений")
 
 bot.polling()
