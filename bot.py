@@ -36,7 +36,7 @@ def handle_message(message):
            try:
              bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time.timestamp())
              #@Did_Non_Stop @dekeractoviy @Rommel_l @wsgf_2014     
-             bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був би замучений задля припинення спаму. Але розробник не дурак, та увімкнув тест мод. Але розробник дурак, та бот до тест моду вже помутив деяких спамерів. Зараз би сюда ще й монолог написати.")
+             bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.")
            except: 
              bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
            try:
