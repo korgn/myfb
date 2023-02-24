@@ -9,7 +9,7 @@ user_messages = {}
 def send_help(message):
     bot.send_message(message.chat.id, "Мої можливості досить прості. Я звичайнісенький бот антіспам, без налаштувань чи щось такого, і я мучу за спам, після чого кличу админів командою репорт. \n\n[Розроблено спеціально для чату Бестіарій, і розраховано виключно на працю в ньому.]")
     
-@bot.message_handler(commands=['s'])
+@bot.message_handler(commands=['suck'])
 def send_help(message):
     bot.send_message(message.chat.id, "Смоктати я не вмію, але це гарно робить Ром... Алукард.")
     
