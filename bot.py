@@ -38,11 +38,14 @@ def handle_message(message):
                 # Заборонити користувача на 5 хвилин
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=0)
 
-                # Створення кнопок для зняття муту та бану
-                markup = types.InlineKeyboardMarkup(row_width=2)
-                unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
-                ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
-                markup.add(unmute_button, ban_button)
+                # Створення кнопок для зняття муту та бану, якщо користувач - адміністратор, не створювати кнопки
+                if bot.get_chat_member(message.chat.id, user_id).status != "administrator":
+                    markup = types.InlineKeyboardMarkup(row_width=2)
+                    unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
+                    ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
+                    markup.add(unmute_button, ban_button)
+                else:
+                    markup = None
 
                 # Відправлення повідомлення про мут та кнопок для зняття муту та бану
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=markup)
@@ -66,5 +69,6 @@ def handle_callback(call):
         # Забанити користувача
         bot.ban_chat_member(call.message.chat.id, user_id)
         bot.answer_callback_query(call.id, text="Користувач забанений")
+
 
 bot.polling()
