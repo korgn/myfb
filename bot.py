@@ -34,24 +34,26 @@ def handle_message(message):
 
     if len(user_messages[user_id]) >= 5:
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
-           try:
-             bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time.timestamp())
-                
+            try:
+                # Заборонити користувача на 5 хвилин
+                bot.restrict_chat_member(message.chat.id, user_id, until_date=0)
+
+                # Створення кнопок для зняття муту та бану
                 markup = types.InlineKeyboardMarkup(row_width=2)
                 unmute_button = types.InlineKeyboardButton("Зняти мут", callback_data=f"unmute:{user_id}")
                 ban_button = types.InlineKeyboardButton("Забанити", callback_data=f"ban:{user_id}")
                 markup.add(unmute_button, ban_button)
-                
-             #@Did_Non_Stop @dekeractoviy @Rommel_l @wsgf_2014     
-             bot.send_message(message.chat.id, f"@Did_Non_Stop, @dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.")
-           except: 
-             bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
-           try:
-               del user_messages[user_id]
-           except:
-               pass
-            
-            
+
+                # Відправлення повідомлення про мут та кнопок для зняття муту та бану
+                bot.send_message(message.chat.id, f"@{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=markup)
+            except: 
+                bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася опимлка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
+            try:
+                del user_messages[user_id]
+            except:
+                pass
+
+# Обробник натиснення кнопки
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback(call):
     user_id = call.data.split(":")[1]
