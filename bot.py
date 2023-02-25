@@ -53,7 +53,7 @@ def create_keyboard(user_id):
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback_query(call):
     user_id = call.data.split("_")[1]
-    if call.from_user.id != ADMIN_ID: # replace with the ID of the chat administrator
+    if call.from_user.id != 1149042468: # replace with the ID of the chat administrator
         return
     if call.data.startswith("ban"):
         bot.kick_chat_member(call.message.chat.id, user_id)
