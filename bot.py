@@ -25,8 +25,7 @@ def send_help(message):
 
 @bot.message_handler(commands=['bot'])
 def send_help(message):
-    bot.forward_message(message.chat.id, fchid, fmesid,
-                         disable_notification=True)
+    bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
 
 @bot.message_handler(content_types=['text', 'animation', 'sticker'])
 def handle_message(message):
