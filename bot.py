@@ -23,10 +23,16 @@ def send_help(message):
     fmesid = 20
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
-@bot.message_handler(commands=['koks'])
+@bot.message_handler(commands=['bot'])
 def send_help(message):
     fchid = -1001863999290
-    fmesid = 21
+    fmesid = 20
+    bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
+    
+@bot.message_handler(commands=['Odesa'])
+def send_help(message):
+    fchid = -1001863999290
+    fmesid = 24
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
 
 @bot.message_handler(content_types=['text', 'animation', 'sticker'])
