@@ -9,7 +9,7 @@ mute_time = datetime.now() + timedelta(minutes=20)
 
 user_messages = {}
 
-fchid = -1001863999290
+fchid = 1001863999290
 # id повідомлення, яке потрібно переслати
 fmesid = 11
 
