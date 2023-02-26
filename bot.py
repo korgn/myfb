@@ -9,6 +9,12 @@ mute_time = datetime.now() + timedelta(minutes=20)
 
 user_messages = {}
 
+    fchid = -1001863999290
+    # id повідомлення, яке потрібно переслати
+    fmesid = 11
+    
+    
+
 @bot.message_handler(commands=['можливості', 'h'])
 def send_help(message):
     bot.send_message(message.chat.id, "Мої можливості досить прості. Я звичайнісенький бот антіспам, без налаштувань чи щось такого, і я мучу за спам, після чого кличу админів командою репорт. \n\n[Розроблено спеціально для чату Бестіарій, і розраховано виключно на працю в ньому.]\n \nбот BAS(Bestiariy AntiSpam) версії 0.3")
@@ -16,7 +22,12 @@ def send_help(message):
 @bot.message_handler(commands=['suck'])
 def send_help(message):
     bot.send_message(message.chat.id, "Алукард смокче член.")
-
+    
+@bot.message_handler(commands=['bot'])
+def send_help(message):
+   bot.forward_message(message.chat.id, fchid, fmesid,
+   disable_notification=True)
+    
 @bot.message_handler(content_types=['text', 'animation', 'sticker'])
 def handle_message(message):
     user_id = message.from_user.id
