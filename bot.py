@@ -29,10 +29,10 @@ def send_help(message):
     fmesid = 50
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
-@bot.message_handler(commands=['ебанута'])
+@bot.message_handler(commands=['koks'])
 def send_help(message):
     fchid = -1001863999290
-    fmesid = 47
+    fmesid = 21
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
 @bot.message_handler(commands=['ебанута'])
@@ -51,6 +51,12 @@ def send_help(message):
 def send_help(message):
     fchid = -1001863999290
     fmesid = 35
+    bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
+    
+@bot.message_handler(commands=['SS'])
+def send_help(message):
+    fchid = -1001863999290
+    fmesid = 51
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
 @bot.message_handler(commands=['Odesa'])
