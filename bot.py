@@ -23,10 +23,10 @@ def send_help(message):
     fmesid = 20
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
-@bot.message_handler(commands=['bot'])
+@bot.message_handler(commands=['koks'])
 def send_help(message):
     fchid = -1001863999290
-    fmesid = 20
+    fmesid = 21
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
 @bot.message_handler(commands=['Odesa'])
