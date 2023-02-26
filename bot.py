@@ -9,25 +9,25 @@ mute_time = datetime.now() + timedelta(minutes=20)
 
 user_messages = {}
 
-    fchid = -1001863999290
-    # id повідомлення, яке потрібно переслати
-    fmesid = 11
-    
-    
+fchid = -1001863999290
+# id повідомлення, яке потрібно переслати
+fmesid = 11
+
+
 
 @bot.message_handler(commands=['можливості', 'h'])
 def send_help(message):
     bot.send_message(message.chat.id, "Мої можливості досить прості. Я звичайнісенький бот антіспам, без налаштувань чи щось такого, і я мучу за спам, після чого кличу админів командою репорт. \n\n[Розроблено спеціально для чату Бестіарій, і розраховано виключно на працю в ньому.]\n \nбот BAS(Bestiariy AntiSpam) версії 0.3")
-    
+
 @bot.message_handler(commands=['suck'])
 def send_help(message):
     bot.send_message(message.chat.id, "Алукард смокче член.")
-    
+
 @bot.message_handler(commands=['bot'])
 def send_help(message):
-   bot.forward_message(message.chat.id, fchid, fmesid,
-   disable_notification=True)
-    
+    bot.forward_message(message.chat.id, fchid, fmesid,
+                         disable_notification=True)
+
 @bot.message_handler(content_types=['text', 'animation', 'sticker'])
 def handle_message(message):
     user_id = message.from_user.id
@@ -46,7 +46,7 @@ def handle_message(message):
             try:
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
                 bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=create_keyboard(user_id))
-            except: 
+            except:
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
 
             try:
