@@ -45,7 +45,7 @@ def handle_message(message):
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
             try:
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
-                bot.send_message(message.chat.id, f"@{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=create_keyboard(user_id))
+                bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=create_keyboard(user_id))
             except: 
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
 
