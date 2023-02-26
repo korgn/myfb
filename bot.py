@@ -53,7 +53,7 @@ def send_help(message):
     fmesid = 35
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
-@bot.message_handler(commands=['SS'])
+@bot.message_handler(commands=['СС'])
 def send_help(message):
     fchid = -1001863999290
     fmesid = 51
