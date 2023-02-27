@@ -9,6 +9,8 @@ mute_time = datetime.now() + timedelta(minutes=20)
 
 user_messages = {}
 
+last_messages = {}
+
 @bot.message_handler(commands=['можливості', 'h'])
 def send_help(message):
     bot.send_message(message.chat.id, "Мої можливості досить прості. Я звичайнісенький бот антіспам, без налаштувань чи щось такого, і я мучу за спам, після чого кличу админів командою репорт. \n\n[Розроблено спеціально для чату Бестіарій, і розраховано виключно на працю в ньому.]\n \nбот BAS(Bestiariy AntiSpam) версії 0.3")
@@ -87,6 +89,23 @@ def handle_message(message):
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
 
             user_messages.pop(user_id, None)
+
+@bot.message_handler(content_types=['text'])
+def handle_message(message):
+    user_id = message.from_user.id
+    text = message.text
+
+    if user_id in last_messages and last_messages[user_id] == text:
+        # message is the same as the last one sent to the user, do nothing
+        return
+
+    # do something with the message...
+
+    # send the message to the user
+    bot.send_message(user_id, text)
+
+    # store the last message sent to the user
+    last_messages[user_id] = text
 
 def create_keyboard(user_id):
     keyboard = types.InlineKeyboardMarkup()
