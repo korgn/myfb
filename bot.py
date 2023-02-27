@@ -90,23 +90,6 @@ def handle_message(message):
 
             user_messages.pop(user_id, None)
 
-@bot.message_handler(content_types=['text'])
-def handle_message(message):
-    user_id = message.from_user.id
-    text = message.text
-
-    if user_id in last_messages and last_messages[user_id] == text:
-        # message is the same as the last one sent to the user, do nothing
-        return
-
-    # do something with the message...
-
-    # send the message to the user
-    bot.send_message(user_id, text)
-
-    # store the last message sent to the user
-    last_messages[user_id] = text
-
 def create_keyboard(user_id):
     keyboard = types.InlineKeyboardMarkup()
     ban_button = types.InlineKeyboardButton("Бан", callback_data=f"ban_{user_id}")
@@ -126,7 +109,7 @@ def handle_callback_query(call):
         bot.kick_chat_member(call.message.chat.id, user_id)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"[{user_id}] був забанений.")
     elif call.data.startswith("unmute"):
-        bot.restrict_chat_member(call.message.chat.id, user_id, can_send_messages=True)
+        bot.restrict_chat_member(call.message.chat.id, user_id, can_send_messages=True, can_send_media=True)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"[{user_id}] був розмучений.")
 
     bot.answer_callback_query(call.id)
