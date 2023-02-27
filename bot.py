@@ -9,8 +9,6 @@ mute_time = datetime.now() + timedelta(minutes=20)
 
 user_messages = {}
 
-last_messages = {}
-
 @bot.message_handler(commands=['можливості', 'h'])
 def send_help(message):
     bot.send_message(message.chat.id, "Мої можливості досить прості. Я звичайнісенький бот антіспам, без налаштувань чи щось такого, і я мучу за спам, після чого кличу админів командою репорт. \n\n[Розроблено спеціально для чату Бестіарій, і розраховано виключно на працю в ньому.]\n \nбот BAS(Bestiariy AntiSpam) версії 0.3")
