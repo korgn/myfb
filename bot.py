@@ -86,10 +86,7 @@ def handle_message(message):
             except:
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
 
-            try:
-                del user_messages[user_id]
-            except:
-                pass
+            user_messages.pop(user_id, None)
 
 def create_keyboard(user_id):
     keyboard = types.InlineKeyboardMarkup()
