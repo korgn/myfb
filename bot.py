@@ -101,12 +101,18 @@ def create_keyboard(user_id):
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback_query(call):
     user_id = call.data.split("_")[1]
-    if call.from_user.id != 1149042468 or 770662069 or 1380896061: # replace with the ID of the chat administrator
+    admins = [1149042468, 770662069, 1380896061]  # replace with the IDs of the chat administrators
+
+    if call.from_user.id not in admins:
         return
+
     if call.data.startswith("ban"):
         bot.kick_chat_member(call.message.chat.id, user_id)
     elif call.data.startswith("unmute"):
         bot.restrict_chat_member(call.message.chat.id, user_id, can_send_messages=True)
+
     bot.answer_callback_query(call.id)
 
+
 bot.polling()
+
