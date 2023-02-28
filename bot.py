@@ -110,11 +110,23 @@ def handle_callback_query(call):
         return
 
     if call.data.startswith("ban"):
+      try:
         bot.kick_chat_member(call.message.chat.id, user_id)
+      except:
+        pass
+      try:
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"[{user_id}] був забанений.")
+      except:
+        pass
     elif call.data.startswith("unmute"):
+      try:
         bot.restrict_chat_member(chat_id=call.message.chat.id, user_id=user_id, can_send_messages=True, can_send_other_messages=True)
+      except:
+        pass
+      try:
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"[{user_id}] був розмучений.")
+      except:
+        pass
 
     bot.answer_callback_query(call.id)
     bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=None)
