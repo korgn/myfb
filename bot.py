@@ -80,6 +80,11 @@ def handle_message(message):
 
     if len(user_messages[user_id]) >= 5:
         if user_messages[user_id][-1] - user_messages[user_id][-5] <= 5:
+            # перевірити, чи користувач вже в муті
+            member = bot.get_chat_member(message.chat.id, user_id)
+            if member.status == "restricted":
+                return
+
             try:
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
                 bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=create_keyboard(user_id))
@@ -87,6 +92,7 @@ def handle_message(message):
                 bot.send_message(message.chat.id, f"@{username} [{user_id}] повинен був бути замучений, але трапилася помилка, скоріше за усе вона полягає у тому, що цей користувач адміністратор чату.")
 
             user_messages.pop(user_id, None)
+
 
 def create_keyboard(user_id):
     keyboard = types.InlineKeyboardMarkup()
