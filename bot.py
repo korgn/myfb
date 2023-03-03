@@ -122,7 +122,7 @@ def handle_callback_query(call):
     elif call.data.startswith("unmute"):
      try:
       try:
-        bot.restrict_chat_member(chat_id=call.message.chat.id, user_id=user_id, can_send_messages=True, can_send_other_messages=True)
+        bot.restrict_chat_member(chat_id=call.message.chat.id, user_id=user_id, can_send_messages=True, can_send_other_messages=True, can_send_polls=True, can_add_web_page_previews=True)
       except:
         pass
       try:
