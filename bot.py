@@ -5,8 +5,6 @@ from datetime import datetime, timedelta
 
 bot = telebot.TeleBot('6102750853:AAHOZ95KPNLsYKA9AY_D6ef-GJTlBEedG2E')
 
-mute_time = datetime.now() + timedelta(minutes=20)
-
 user_messages = {}
 
 @bot.message_handler(commands=['можливості', 'h'])
@@ -84,8 +82,8 @@ def handle_message(message):
             member = bot.get_chat_member(message.chat.id, user_id)
             if member.status == "restricted":
                 return
-
             try:
+                mute_time = datetime.now() + timedelta(minutes=20)
                 bot.restrict_chat_member(message.chat.id, user_id, until_date=mute_time)
                 bot.send_message(message.chat.id, f"@dekeractoviy - @{username} [{user_id}] був замучений задля припинення спаму.", reply_markup=create_keyboard(user_id))
             except:
