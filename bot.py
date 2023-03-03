@@ -14,6 +14,10 @@ def send_help(message):
 @bot.message_handler(commands=['suck'])
 def send_help(message):
     bot.send_message(message.chat.id, "Алукард смокче член.")
+    
+@bot.message_handler(commands=['ах'])
+def send_help(message):
+    bot.send_message(message.chat.id, "Досить їбатись.")
 
 @bot.message_handler(commands=['bot'])
 def send_help(message):
@@ -49,6 +53,18 @@ def send_help(message):
 def send_help(message):
     fchid = -1001863999290
     fmesid = 35
+    bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
+    
+@bot.message_handler(commands=['sex'])
+def send_help(message):
+    fchid = -1001863999290
+    fmesid = 62
+    bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
+    
+@bot.message_handler(commands=['best'])
+def send_help(message):
+    fchid = -1001863999290
+    fmesid = 59
     bot.forward_message(message.chat.id, fchid, fmesid, disable_notification=True)
     
 @bot.message_handler(commands=['СС'])
